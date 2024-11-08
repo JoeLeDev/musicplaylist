@@ -1,0 +1,171 @@
+ Documentation de l'API - Music API
+
+ Base URL
+```
+http://127.0.0.1:5000
+```
+
+ Endpoints
+
+ 1. Recherche d'artistes
+- Endpoint: `/search_artists`
+- Méthode: GET
+- Description: Recherche d'artistes par nom avec détails (genres, image, etc.).
+- Paramètres:
+  - `artist` (str): Le nom de l'artiste à rechercher.
+- Exemple:
+  curl "http://127.0.0.1:5000/search_artists?artist=Chris%20Brown"
+  
+
+# 2. Ajout de chansons d'un artiste à une playlist
+- Endpoint: `/playlist/add_songs`
+- Méthode: POST
+- Description: Ajoute les chansons d'un artiste spécifié à la playlist.
+- Paramètres:
+  - `artist` (str): Nom de l'artiste.
+- Exemple:
+  curl -X POST -H "Content-Type: application/json" -d '{"artist": "Chris Brown"}' http://127.0.0.1:5000/playlist/add_songs
+  
+
+3. Création d'une nouvelle playlist
+- Endpoint: `/playlists`
+- Méthode: POST
+- Description: Crée une nouvelle playlist.
+- Paramètres:
+  - `name` (str): Nom de la playlist.
+- Exemple:
+  curl -X POST -H "Content-Type: application/json" -d '{"name": "My Playlist"}' http://127.0.0.1:5000/playlists
+  
+
+ 4. Affichage d'une playlist
+- Endpoint: `/playlists/<int:playlist_id>`
+- Méthode: GET
+- Description**: Affiche les détails d'une playlist existante.
+- Exemple:
+  curl "http://127.0.0.1:5000/playlists/1"
+  
+
+ 5. Recherche de chansons d'un artiste
+- Endpoint: `/spotify_songs`
+- Méthode: GET
+- Description: Récupère des chansons par nom d'artiste.
+- Paramètres:
+  - `artist` (str): Nom de l'artiste.
+- Exemple:
+  curl "http://127.0.0.1:5000/spotify_songs?artist=Chris%20Brown"
+  
+
+ 6. Affichage des chansons dans l'album d'un artiste
+- Endpoint: `/spotify_songs_by_album`
+- Méthode: GET
+- Description: Récupère toutes les chansons d'un album spécifique d'un artiste.
+- Paramètres:
+  - `artist` (str): Nom de l'artiste.
+  - `album` (str): Nom de l'album.
+- Exemple:
+  curl "http://127.0.0.1:5000/spotify_songs_by_album?artist=Chris%20Brown&album=Indigo"
+  
+
+ 7. Suppression d'une chanson
+- Endpoint: `/songs/<int:song_id>`
+- Méthode: DELETE
+- Description: Supprime une chanson par ID.
+- Exemple:
+  curl -X DELETE "http://127.0.0.1:5000/songs/1"
+  
+
+
+8. Rechercher des chansons d'un artiste sur Spotify
+
+Endpoint : /spotify_songs
+Méthode : GET
+Paramètres :
+artist : Nom de l'artiste (requis)
+Exemple:
+curl "http://127.0.0.1:5000/spotify_songs?artist=Chris%20Brown"
+
+
+
+9. Ajouter des chansons d'un artiste à une playlist
+
+Endpoint : /playlist/add_songs
+Méthode : POST
+Paramètres (dans le body de la requête JSON) :
+artist : Nom de l'artiste (facultatif)
+artist_id : ID de l'artiste (facultatif)
+Exemple:
+curl -X POST -H "Content-Type: application/json" -d '{"artist": "Chris Brown"}' http://127.0.0.1:5000/playlist/add_songs
+
+
+
+10. Rechercher un album d'un artiste et afficher ses chansons
+
+Endpoint : /spotify_songs_by_album
+Méthode : GET
+Paramètres :
+artist : Nom de l'artiste (requis)
+album : Nom de l'album (requis)
+Exemple:
+curl "http://127.0.0.1:5000/spotify_songs_by_album?artist=Chris%20Brown&album=Indigo"
+
+
+
+11. Créer une nouvelle playlist
+
+Endpoint : /playlists
+Méthode : POST
+Paramètres (dans le body de la requête JSON) :
+name : Nom de la playlist (requis)
+
+curl -X POST -H "Content-Type: application/json" -d '{"name": "My Playlist"}' http://127.0.0.1:5000/playlists
+
+
+12. Créer une nouvelle playlist
+
+Endpoint : /playlists
+Méthode : POST
+Paramètres (dans le body de la requête JSON) :
+name : Nom de la playlist (requis)
+Exemple: 
+curl -X POST -H "Content-Type: application/json" -d '{"name": "My Playlist"}' http://127.0.0.1:5000/playlists
+
+
+
+13. Ajouter une chanson à une playlist
+
+Endpoint : /playlists/<playlist_id>/add_song
+Méthode : POST
+Paramètres (dans le body de la requête JSON) :
+song_id : ID de la chanson à ajouter (requis)
+Exemple:
+curl -X POST -H "Content-Type: application/json" -d '{"song_id": 1}' http://127.0.0.1:5000/playlists/1/add_song
+
+
+14. Recuperer toutes les playlist
+
+Endpoint: /playlists
+Méthode: GET
+Exemple:
+curl "http://127.0.0.1:5000/playlists"
+
+15. Afficher une playlist
+
+Endpoint : /playlists/<playlist_id>
+Méthode : GET
+Exemple:
+curl "http://127.0.0.1:5000/playlists/1"
+
+
+
+16. Modifier le nom d'une playlist
+
+Endpoint : /playlists/<playlist_id>
+Méthode : PUT
+Paramètres (dans le body de la requête JSON) :
+name : Nouveau nom de la playlist (requis)
+Exemple:
+curl -X PUT -H "Content-Type: application/json" -d '{"name": "New Playlist Name"}' http://127.0.0.1:5000/playlists/1
+
+Notes
+- L'API utilise une clé de token pour accéder à l'API Spotify afin de récupérer des informations sur les artistes et les chansons.
+- Certaines informations, comme les images et les genres d'artistes, proviennent directement de l'API Spotify.

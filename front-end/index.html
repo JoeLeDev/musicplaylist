@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Playlists</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <h1>Music Playlists</h1>
+    <div class="super-container">
+        <div class="main-container">
+            <div id="search-container">
+                <h2>Recherche des chansons</h2>
+                <input type="text" id="artist-search" placeholder="Nom de l'artiste" />
+                <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <ul id="search-results"></ul>
+                <div id="spotify-pagination-controls"></div>
+            </div>
+        </div>
+    
+        <div class="main-container">
+            <div id="db-songs-container">
+                <h2>Playlist Coup de Coeur</h2>
+                <ul id="db-songs-list"></ul>
+                <div id="pagination-controls"></div>
+            </div>
+        </div>
+    
+        <div class="main-container">
+            <div id="playlists-container">
+                <h2>Mes Playlists</h2>
+                <input type="text" id="new-playlist-name" placeholder="Nom de la nouvelle playlist" />
+                <button id="submit-playlist"><i class="fa fa-add" aria-hidden="true"></i></button>
+                <ul id="playlists-list"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="playlist-details-container" style="display: none;">
+        <button onclick="hidePlaylistDetails()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <h2>Détails de la Playlist</h2>
+        <div id="playlist-details"></div>
+    </div>
+    
+
+    
+
+    <script src="app.js"></script>
+</body>
+</html>
